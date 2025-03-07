@@ -12,7 +12,7 @@ class RegistrationsController < ApplicationController
         merchant_name:  "Fulano de Tal",
         merchant_city:  'SAO PAULO',
         transaction_id: "TID#{@registration.id}",
-        amount:         '1.00',
+        amount:         '290.00',
         currency:       '986',
         country_code:   'BR',
         postal_code:    '77023366',
@@ -20,6 +20,7 @@ class RegistrationsController < ApplicationController
       )
 
       @registration.update(
+        copia_cola: pix.to_s,
         qrcode: pix.base64 # Salva o QR Code Base64
       )
 

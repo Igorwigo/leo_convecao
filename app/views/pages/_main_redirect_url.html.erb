@@ -291,6 +291,14 @@
         <p class="detail-value"style="padding: 15px"><%= registration.translate_status %></p>
         <% if registration.status == 'pending'%>
             <%= image_tag "#{@registration.qrcode}", class: 'qrcode-image' %>
+          <div style="margin-top: 15px; text-align: center;">
+            <p id="pix-code" style="word-break: break-all; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+              <%= @registration.copia_cola %>
+            </p>
+            <button id="copy-button" style="margin-top: 5px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 15px;">
+              Copiar Código PIX
+            </button>
+          </div>
         <% end %>
         <% if registration.status == 'approved'%>
           <%= image_tag 'celebration.gif', alt: 'Gif de comemoração', style: ' width: 300px;  margin-top: 10px;' %>
@@ -326,3 +334,14 @@
 
   </div>
 </div>
+
+<script>
+    document.getElementById('copy-button').addEventListener('click', function() {
+        const pixCode = document.getElementById('pix-code').innerText;
+        navigator.clipboard.writeText(pixCode).then(() => {
+            alert('Código PIX Copia e Cola copiado!');
+        }).catch(err => {
+            console.error('Erro ao copiar o código PIX:', err);
+        });
+    });
+</script>
