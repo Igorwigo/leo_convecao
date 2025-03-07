@@ -12,16 +12,23 @@
 </div>
 
 <script>
-    let countdown = 5;
-    const countdownElement = document.getElementById("countdown");
+    document.addEventListener("DOMContentLoaded", function () {
+        let countdown = 5;
+        const countdownElement = document.getElementById("countdown");
 
-    const interval = setInterval(() => {
-        countdown--;
-        countdownElement.textContent = countdown;
-
-        if (countdown <= 0) {
-            clearInterval(interval);
-            window.location.href = "<%= @url_redirect %>"; // Substitua pelo caminho real
+        if (!countdownElement) {
+            console.error("Elemento #countdown não encontrado!");
+            return;
         }
-    }, 1000);
+
+        const interval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.replace("<%= @url_redirect %>"); // `replace` é mais confiável no mobile
+            }
+        }, 1000);
+    });
 </script>
