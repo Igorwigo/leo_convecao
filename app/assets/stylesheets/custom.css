@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    padding-top: 56px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #4a148c 0%, #311b92 100%);
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+/* Countdown Styles */
+.countdown-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px 10px;
+    margin: 10px;
+}
+
+.countdown-label {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Event Details */
+.event-detail {
+    margin: 20px 0;
+}
+
+.event-detail i {
+    margin-right: 10px;
+}
+
+/* Schedule Timeline */
+.schedule-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.schedule-item {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.schedule-item .time {
+    color: #4a148c;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.schedule-item h4 {
+    margin: 0;
+    color: #333;
+}
+
+.schedule-item p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+/* Registration Form */
+.registration-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+    }
+
+    .countdown-item {
+        padding: 15px 5px;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+}

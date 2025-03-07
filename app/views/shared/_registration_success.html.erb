@@ -1,0 +1,27 @@
+<div class="bg-green-50 p-8 rounded-lg text-center">
+  <div class="mb-4">
+    <%= heroicon "check-circle", options: { class: "w-16 h-16 text-green-500 mx-auto" } %>
+  </div>
+  <h3 class="text-2xl font-bold text-green-800 mb-2">Inscrição Confirmada!</h3>
+  <p class="text-green-600 mb-4">
+    Obrigado por se inscrever na XXVI Conferência do Distrito LEO LB2. Em breve você receberá um e-mail com mais informações.
+  </p>
+  <p class="text-green-600 font-semibold">
+    Você será redirecionado o Acompanhamento da sua inscrição <span id="countdown">5</span> segundos...
+  </p>
+</div>
+
+<script>
+    let countdown = 5;
+    const countdownElement = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+            clearInterval(interval);
+            window.location.href = "<%= @url_redirect %>"; // Substitua pelo caminho real
+        }
+    }, 1000);
+</script>

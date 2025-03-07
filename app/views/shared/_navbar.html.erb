@@ -1,0 +1,158 @@
+<style>
+    /* Navbar Styles */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .navbar-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: rgb(37, 99, 235);
+        text-decoration: none;
+    }
+
+    .navbar-brand:hover {
+        color: rgb(29, 78, 216);
+    }
+
+    .navbar-links-desktop {
+        display: none;
+    }
+
+    .navbar-link {
+        padding: 0.5rem 1rem;
+        color: rgb(75, 85, 99);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .navbar-link:hover {
+        color: rgb(37, 99, 235);
+    }
+
+    .navbar-mobile-toggle {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .navbar-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: rgb(75, 85, 99);
+    }
+
+    .navbar-mobile-menu {
+        display: none;
+        padding: 0.5rem 1rem;
+        background-color: white;
+        border-top: 1px solid rgb(229, 231, 235);
+    }
+
+    .navbar-mobile-menu.is-active {
+        display: block;
+    }
+
+    .navbar-mobile-link {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: rgb(75, 85, 99);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .navbar-mobile-link:hover {
+        color: rgb(37, 99, 235);
+    }
+
+    /* Spacer to prevent content from being hidden under navbar */
+    .navbar-spacer {
+        height: 4rem; /* Same as navbar height */
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+        .navbar-links-desktop {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar-mobile-toggle {
+            display: none;
+        }
+
+        .navbar-mobile-menu {
+            display: none !important;
+        }
+    }
+</style>
+
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-content">
+      <%= link_to "CONFERÊNCIA DISTRITO LEO LB2", root_path, class: "navbar-brand" %>
+
+      <div class="hidden md:flex space-x-8">
+        <%= link_to "Início", root_path, class: "text-gray-600 hover:text-blue-600" %>
+        <a href="#sobre" class="text-gray-600 hover:text-blue-600">Sobre</a>
+        <a href="#programacao" class="text-gray-600 hover:text-blue-600">Programação</a>
+        <a href="#inscricao" class="text-gray-600 hover:text-blue-600">Inscrição</a>
+        <a href="#local" class="text-gray-600 hover:text-blue-600">Local</a>
+        <%= link_to "Consultar Inscrição", check_subscribe_registrations_path, class: "text-gray-600 hover:text-blue-600" %>
+
+      </div>
+
+      <button class="md:hidden" id="menu-toggle">
+        &#9776;
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="hidden md:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="#sobre" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Sobre</a>
+      <a href="#programacao" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Programação</a>
+      <a href="#inscricao" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Inscrição</a>
+      <a href="#local" class="block px-3 py-2 text-gray-600 hover:text-blue-600">Local</a>
+    </div>
+  </div>
+</nav>
+<div class="navbar-spacer"></div>
+
+<script>
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+        var menu = document.getElementById("mobile-menu");
+        if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+        } else {
+            menu.classList.add("hidden");
+        }
+    });
+</script>

@@ -1,0 +1,35 @@
+<div class="relative h-screen">
+  <div class="absolute inset-0">
+    <%= image_tag "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80",
+                  alt: "Palmas sunset",
+                  class: "w-full h-full object-cover" %>
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
+
+  <div class="relative z-10 h-full flex flex-col items-center justify-center text-white px-4">
+    <h1 class="text-5xl md:text-7xl font-bold text-center mb-6">
+      XXVI CONFERÊNCIA DO DISTRITO LEO LB2
+    </h1>
+    <p class="text-xl md:text-2xl text-center mb-8 max-w-2xl">
+      A MELHOR CONFERÊNCIA DE TODOS OS TEMPOS ESTÁ CHEGANDO!
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-6 text-lg">
+      <div class="flex items-center gap-2">
+        <%= heroicon "calendar", options: { class: "w-6 h-6" } %>
+        <span>01 - 03 de Maio, 2025</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <%= heroicon "clock", options: { class: "w-6 h-6" } %>
+        <span>08:00 - 18:00</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <%= heroicon "map-pin", options: { class: "w-6 h-6" } %>
+        <span>Palmas - Tocantins</span>
+      </div>
+    </div>
+
+    <%= link_to "Inscreva-se Agora", "#inscricao",
+                class: "mt-12 px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition-colors" %>
+  </div>
+</div>

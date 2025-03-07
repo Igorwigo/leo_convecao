@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  registration: one
+  collection_id: MyString
+  collection_status: MyString
+  payment_id: MyString
+  status: MyString
+  external_reference: MyString
+  payment_type: MyString
+  merchant_order_id: MyString
+  preference_id: MyString
+  site_id: MyString
+  processing_mode: MyString
+  merchant_account_id: MyString
+  raw_response: 
+
+two:
+  registration: two
+  collection_id: MyString
+  collection_status: MyString
+  payment_id: MyString
+  status: MyString
+  external_reference: MyString
+  payment_type: MyString
+  merchant_order_id: MyString
+  preference_id: MyString
+  site_id: MyString
+  processing_mode: MyString
+  merchant_account_id: MyString
+  raw_response: 
