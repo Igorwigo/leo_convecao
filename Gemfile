@@ -42,6 +42,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 #gem do mercado pago para fazer os pagamentos
+gem 'mercadopago-sdk', '~> 2.3'
 gem "tailwindcss-rails"
 gem 'heroicon'
 gem 'qrcode_pix_ruby', '~> 0.5.0'
