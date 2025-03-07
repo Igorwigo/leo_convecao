@@ -1,5 +1,4 @@
 class Registration < ApplicationRecord
-  require 'mercadopago'
   attr_accessor :url_init_point
 
   #Relationships
