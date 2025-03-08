@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
       )
 
       @registration.update(
-        copia_cola: pix.to_s,
+        copia_cola: pix.payload,
         qrcode: pix.base64 # Salva o QR Code Base64
       )
 

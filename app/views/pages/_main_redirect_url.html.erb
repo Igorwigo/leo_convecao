@@ -289,16 +289,14 @@
       <div class="qrcode-container" style="grid-column: span 2">
         <h2 class="details-title">Status do pagamento</h2>
         <p class="detail-value"style="padding: 15px"><%= registration.translate_status %></p>
-        <% if registration.status == 'pending'%>
-            <%= image_tag "#{@registration.qrcode}", class: 'qrcode-image' %>
-          <div style="margin-top: 15px; text-align: center;">
-            <p id="pix-code" style="word-break: break-all; background: #f4f4f4; padding: 10px; border-radius: 5px;">
-              <%= @registration.copia_cola %>
-            </p>
-            <button id="copy-button" style="margin-top: 5px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 15px;">
-              Copiar Código PIX
-            </button>
+        <% if registration.status == 'pending' %>
+          <%= image_tag @registration.qrcode, class: 'qrcode-image' %>
+          <div id="copia_cola" style="word-break: break-all; background: #f4f4f4; padding: 10px; border-radius: 5px;">
+            <%= @registration.copia_cola %> <!-- Texto que será copiado -->
           </div>
+          <button  onclick="copyText()" id="copiarButton" style="margin-top: 5px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 15px;">
+            Copiar
+          </button>
         <% end %>
         <% if registration.status == 'approved'%>
           <%= image_tag 'celebration.gif', alt: 'Gif de comemoração', style: ' width: 300px;  margin-top: 10px;' %>
@@ -335,13 +333,33 @@
   </div>
 </div>
 
-<script>
-    document.getElementById('copy-button').addEventListener('click', function() {
-        const pixCode = document.getElementById('pix-code').innerText;
-        navigator.clipboard.writeText(pixCode).then(() => {
-            alert('Código PIX Copia e Cola copiado!');
-        }).catch(err => {
-            console.error('Erro ao copiar o código PIX:', err);
-        });
-    });
-</script>
+<%= javascript_tag do %>
+  function copyText() {
+    debugger
+      var copiaColaDiv = document.getElementById('copia_cola');
+      var copiarButton = document.getElementById('copiarButton');
+
+      // Garantir que a ação de copiar é feita após o clique
+      if (navigator.clipboard) {
+          navigator.clipboard.writeText(copiaColaDiv.innerText).then(() => {
+          alert("Texto copiado com sucesso!");
+          }).catch((err) => {
+          alert("Erro ao copiar: " + err);
+          });
+      } else {
+          // Para navegadores mais antigos ou que não suportam clipboard API
+          var range = document.createRange();
+          range.selectNodeContents(copiaColaDiv);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          try {
+              var successful = document.execCommand('copy');
+              var msg = successful ? 'Texto copiado com sucesso!' : 'Erro ao copiar.';
+              alert(msg);
+          } catch (err) {
+            alert('Erro ao copiar: ' + err);
+          }
+      }
+  }
+<% end %>
