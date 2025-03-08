@@ -37,7 +37,7 @@ class RegistrationsController < ApplicationController
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(
             "registration_form",
-            partial: "shared/registration_success",
+            partial: "registrations/form",
           locals: { registration: @registration }
           )
         }

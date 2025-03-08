@@ -7,7 +7,7 @@ class Registration < ApplicationRecord
   #Validations
   validates :name, presence: true
 
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, uniqueness: { message: "já está em uso" }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :phone, presence: true
   #Callbacks
 
