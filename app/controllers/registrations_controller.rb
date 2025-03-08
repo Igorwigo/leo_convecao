@@ -2,8 +2,9 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(registration_params)
-
+    Rails.logger.info "User #{@registration} obj criado"
     if @registration.save
+      Rails.logger.info "User #{@registration} salvo"
       # Gerar o QR Code Pix
 
       pix = QrcodePixRuby::Payload.new(
@@ -18,11 +19,12 @@ class RegistrationsController < ApplicationController
         postal_code:    '77023366',
         repeatable:     false
       )
-
+      Rails.logger.info "update #{@registration}"
       @registration.update(
         copia_cola: pix.payload,
         qrcode: pix.base64 # Salva o QR Code Base64
       )
+      Rails.logger.info "Foi atualizado #{@registration}"
 
       @url_redirect = check_subscribe_registrations_path(email: @registration.email)
       # SubscribeMailer.bem_vindo(@registration).deliver_now
