@@ -41,7 +41,7 @@ class RegistrationsController < ApplicationController
           locals: { registration: @registration }
           )
         }
-        format.html { render partial: "registrations/form" } # Fallback para testes
+        format.html { render partial: "registrations/form", locals: { registration: @registration } } # Fallback para testes
       end
     end
   end
