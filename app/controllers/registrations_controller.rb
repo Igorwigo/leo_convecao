@@ -2,33 +2,26 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(registration_params)
-    Rails.logger.info "User #{@registration} obj criado"
+
     if @registration.save
       Rails.logger.info "User #{@registration} salvo"
       # Gerar o QR Code Pix
-
       pix = QrcodePixRuby::Payload.new(
         pix_key:        'tesourariaconferencialeopmw@gmail.com',
-        description:    "Pagamento da inscrição #{@registration.id}",
-        merchant_name:  "Fulano de Tal",
-        merchant_city:  'SAO PAULO',
+        description:    "Pagamento inscricao#{@registration.id}",
         transaction_id: "TID#{@registration.id}",
         amount:         '290.00',
         currency:       '986',
         country_code:   'BR',
-        postal_code:    '77023366',
         repeatable:     false
       )
-      Rails.logger.info "update #{@registration}"
       @registration.update(
         copia_cola: pix.payload,
         qrcode: pix.base64 # Salva o QR Code Base64
       )
-      Rails.logger.info "Foi atualizado #{@registration}"
 
       @url_redirect = check_subscribe_registrations_path(email: @registration.email)
       # SubscribeMailer.bem_vindo(@registration).deliver_now
-      Rails.logger.info "Accept Header: #{request.headers['Accept']}"
 
       respond_to do |format|
         format.turbo_stream {
@@ -44,10 +37,11 @@ class RegistrationsController < ApplicationController
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(
             "registration_form",
-            partial: "registrations/form",
-            locals: { registration: @registration }
+            partial: "shared/registration_success",
+          locals: { registration: @registration }
           )
         }
+        format.html { render partial: "registrations/form" } # Fallback para testes
       end
     end
   end
