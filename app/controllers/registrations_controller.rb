@@ -28,6 +28,8 @@ class RegistrationsController < ApplicationController
 
       @url_redirect = check_subscribe_registrations_path(email: @registration.email)
       # SubscribeMailer.bem_vindo(@registration).deliver_now
+      Rails.logger.info "Accept Header: #{request.headers['Accept']}"
+
       respond_to do |format|
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(
@@ -35,6 +37,7 @@ class RegistrationsController < ApplicationController
             partial: "shared/registration_success"
           )
         }
+        format.html { render partial: "shared/registration_success" } # Fallback para testes
       end
     else
       respond_to do |format|
